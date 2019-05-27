@@ -1,6 +1,7 @@
 package com.baz.paging
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.switchMap
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import java.util.concurrent.Executors
@@ -20,5 +21,7 @@ internal class MainViewModel : ViewModel() {
             .setFetchExecutor(executor)
             .build()
     }
-
+    internal val movieStateLiveData by lazy(NONE) {
+        mainDataSourceFactory.mainDataSourceLiveData.switchMap { it.movieStateLiveData }
+    }
 }
