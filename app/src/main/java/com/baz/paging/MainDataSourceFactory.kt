@@ -10,7 +10,7 @@ internal class MainDataSourceFactory : DataSource.Factory<Int, Movie>() {
     internal val mainDataSourceLiveData = MutableLiveData<MainDataSource>()
 
     override fun create(): DataSource<Int, Movie> {
-        mainDataSourceLiveData.value = mainDataSource
+        mainDataSourceLiveData.postValue(mainDataSource)
         return mainDataSource
     }
 }
